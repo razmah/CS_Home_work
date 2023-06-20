@@ -4,7 +4,7 @@
 Console.Clear();
 
 Console.Write("Введите число: ");
-int Number = int.Parse(Console.ReadLine());
+int Number = int.Parse(Console.ReadLine() ?? "");
 string AnyNumber = Convert.ToString(Number);
 if (AnyNumber.Length > 2)
 {
