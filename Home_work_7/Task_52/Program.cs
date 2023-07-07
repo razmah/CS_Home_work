@@ -1,7 +1,6 @@
-﻿/* Задача 50. 
-    Напишите программу, которая на вход принимает
-    позиции элемента в двумерном массиве, и возвращает
-    значение этого элемента или же указание, что такого элемента нет */
+﻿/* Задача 52.  
+    Задайте двумерный массив целых чисел.
+    Найдите среднее арифметическое элементов в каждом столбце. */
 
 Console.Clear();
 
@@ -9,13 +8,12 @@ int rows = GetNumberFromUser("Введите количество строк в 
 int columns = GetNumberFromUser("Введите количество столбцов в массиве: ", "Ошибка ввода!");
 int minValue = GetNumberFromUser("Введите минимальное значение элемента в массиве: ", "Ошибка ввода!");
 int maxValue = GetNumberFromUser("Введите максимальное значение элемента в массиве: ", "Ошибка ввода!");
-int number = GetNumberFromUser("Введите значение элемента: ", "Ошибка ввода!");
 
 int[,] array = GetArray(rows, columns, minValue, maxValue);
 Console.WriteLine();
 PrintArray(array);
 Console.WriteLine();
-FindNumberArray(array, number);
+AverageArifm(array);
 
 int GetNumberFromUser(string message, string errorMessage)
 {
@@ -54,20 +52,17 @@ void PrintArray(int[,] arr)
     }
 }
 
-void FindNumberArray(int[,] findElement, int userNumber)
-{
-    bool find = false;
-    for (int i = 0; i < findElement.GetLength(0); i++)
+void AverageArifm(int[,] arr)
+{   
+    Console.Write("Среднее арифметическое каждого столбца: ");
+    double average = 0;
+    for (int j = 0; j < arr.GetLength(1); j++)
     {
-        for (int j = 0; j < findElement.GetLength(1); j++)
+        for (int i = 0; i < arr.GetLength(0); i++)
         {
-            if (findElement[i, j] == userNumber)
-            {
-                Console.WriteLine($"Число {userNumber} находится по координатам " + "(" + i + ", " + j + ")");
-                find = true;
-            }
+            average = average + arr[i, j];
         }
+        average = average / arr.GetLength(1);
+        Console.Write($"{average:f2}" + " ");
     }
-    if (!find)
-        Console.WriteLine($"Число {userNumber} в массиве нет.");
 }
